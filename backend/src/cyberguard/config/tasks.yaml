@@ -1,0 +1,157 @@
+sentry_task:
+  description: >
+    Use the 'analyze_log_anomalies' tool to scan the logs.
+    IMPORTANT: The tool reads from the correct file automatically.
+    Just call the tool — do NOT pass any file_path argument.
+
+    You must identify ALL threats found by the tool:
+    1. Brute Force IPs
+    2. SQL Injection IPs (Critical)
+    3. Web Scanners (Reconnaissance)
+
+    Do NOT summarize them as just "attacks". List every IP and its specific attack type.
+  expected_output: >
+    A strict list of IPs and their attack vectors.
+    Example:
+    - 192.168.1.55 (Brute Force)
+    - 45.33.22.11 (SQL Injection)
+  agent: sentry_agent
+
+hunter_task:
+  description: >
+    You are a Threat Intelligence Analyst.
+
+    STEP 1: Receive the list of suspicious IP addresses identified by the Sentry Agent.
+
+    STEP 2: For EVERY IP in that list, you MUST use the tool named 'check_threat_intelligence'.
+    - Do NOT guess. Do NOT use any other tool name.
+    - Pass the exact IP address to the tool.
+
+    STEP 3: Compile the results.
+    - If the tool returns data (Malicious/Safe), record it.
+    - If the tool says "Not found", record it as "Unknown/No Record".
+
+    CRITICAL: Do not invent threat data. If the database is empty for an IP, say so.
+  expected_output: >
+    A structured list of Threat Intelligence findings.
+    Format:
+    - [IP Address]: [Malicious/Safe] - [Description/ISP] (Confidence: [Score])
+  agent: hunter_agent
+
+detective_task:
+  description: >
+    You are a Digital Forensics Expert.
+
+    STEP 1: TIMELINE RECONSTRUCTION.
+    Use the 'build_attack_timeline' tool.
+    IMPORTANT: The tool reads from the correct file automatically.
+    Just call the tool — do NOT pass any file_path argument.
+
+    STEP 2: CORRELATION (Connect the dots).
+    - Did the Port Scan (203.x) happen BEFORE the SQL Injection?
+    - Did the Brute Force (192.x) happen at the same time as other attacks?
+    - Analyze the SQL syntax (e.g., 'DROP TABLE') to determine malicious intent.
+
+    STEP 3: NARRATIVE.
+    Write a chronological story of the attack. You MUST quote specific timestamps.
+  expected_output: >
+    A forensic narrative connecting the attacks, explicitly citing timestamps from the log analysis.
+  agent: detective_agent
+
+judge_task:
+  description: >
+    Review the findings from the Detective. Calculate a Risk Score FROM 0 TO 100
+    where HIGHER numbers mean MORE dangerous. 100 = most critical threat.
+    
+    CRITICAL SCORING RULES:
+    1. BASE SCORE: Start at 0.
+    2. ATTACK TYPE BONUSES (Add these to the base):
+       - SQL Injection detected: +50 points (Critical Threat)
+       - Brute Force detected: +30 points
+       - Web Scanning / Port Scanning: +10 points
+    3. COORDINATED ATTACK MULTIPLIER: If MORE THAN ONE attack type is present, add +20 points.
+    4. THREAT INTEL: If Hunter confirmed ANY IP is malicious, add +10 points.
+    5. CAP the final score at 100. Do NOT exceed 100.
+    
+    SEVERITY THRESHOLDS:
+    - 0-20  = LOW
+    - 21-40 = MEDIUM
+    - 41-70 = HIGH
+    - 71-100 = CRITICAL
+    
+    CONCRETE EXAMPLES:
+    - Single port scan only = 10 (LOW)
+    - Brute Force only = 30 (MEDIUM)
+    - SQL Injection alone = 50 + 0 = 50 (HIGH)
+    - SQL Injection (50) + Brute Force (30) + Coordinated (20) = 100 (CRITICAL)
+    - SQL Injection (50) + Brute Force (30) + Web Scanning (10) + Coordinated (20) = 100 (CRITICAL)
+    - SQL Injection (50) + Scanning (10) + Coordinated (20) = 80 (CRITICAL)
+    
+    YOU MUST output EXACTLY this format:
+    Total Risk Score: [NUMBER]/100
+    Severity: [CRITICAL/HIGH/MEDIUM/LOW]
+    
+    For example:
+    Total Risk Score: 95/100
+    Severity: CRITICAL
+    
+    IMPORTANT: The number MUST reflect the actual danger level.
+    A multi-vector attack with SQL Injection + Brute Force MUST score 80 or above.
+    Do NOT output a low score like 1/100 for a dangerous multi-vector attack.
+  expected_output: >
+    A final calculated Risk Score and a Severity Label (LOW, MEDIUM, HIGH, CRITICAL).
+    Must include "Total Risk Score: [NUMBER]/100" and "Severity: [LABEL]" as plain text.
+    Explain the math used to reach this score.
+  agent: judge_agent
+
+medic_task:
+  description: >
+    Generate Linux firewall commands to block the ACTUAL malicious IPs identified (not made-up ones).
+    Use iptables commands to DROP traffic from these IPs.
+    If no malicious IPs were identified, state "No remediation required."
+  expected_output: >
+    Actual iptables commands for the real IPs.
+    Example: "iptables -A INPUT -s 192.168.1.55 -j DROP"
+  agent: medic_agent
+
+scribe_task:
+  description: >
+    Generate a **Board-Level Cybersecurity Incident Report**.
+    The tone must be authoritative, forensic, and concise (BLUF - Bottom Line Up Front).
+    
+    REQUIRED SECTIONS:
+    1. **Executive Summary**: A high-level overview for non-technical stakeholders.
+    2. **Cyber Kill Chain Analysis** (The Forensic Timeline):
+       - **Phase 1: Reconnaissance** (Detail the scanning activity & timestamps).
+       - **Phase 2: Weaponization & Delivery** (Detail the Brute Force/Distraction).
+       - **Phase 3: Exploitation & Actions on Objectives** (Detail the SQL Injection & Payloads).
+    3. **Indicators of Compromise (IOCs)**: A clean list of malicious IPs and their roles.
+    4. **Risk Quantification**: The Risk Score (0-100) and justification.
+    5. **Containment & Remediation**: The exact iptables commands to execute.
+    
+    CRITICAL FORMATTING RULES FOR AUTOMATED PARSING:
+    These fields MUST appear as plain text on their own dedicated lines with NO markdown bold formatting around the label:
+    Attack Type: SQL Injection, Brute Force, Web Scanning
+    Risk Score: 100
+    Severity: CRITICAL
+    Source IP: 45.33.22.11
+    
+    Do NOT write:
+    **Risk Score:** 100
+    **Severity:** CRITICAL
+    
+    DO write:
+    Risk Score: 100
+    Severity: CRITICAL
+    
+    CRITICAL: Cite specific timestamps for every phase.
+    CRITICAL: Use current date.
+  expected_output: >
+    A top-tier Forensic Incident Report in Markdown format.
+    Must contain these exact plain text fields on their own lines:
+    Attack Type: [value]
+    Risk Score: [number]
+    Severity: [CRITICAL/HIGH/MEDIUM/LOW]
+    Source IP: [IP address]
+  agent: scribe_agent
+  output_file: incident_report.md

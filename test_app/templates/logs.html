@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}System Logs{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>📋 System Log Viewer — Information Disclosure Lab</h1>
+  <p>Reads real system logs via <code>tail</code> — command injection possible via <code>file</code> parameter</p>
+</div>
+
+<div class="two-col">
+  <div class="card animate-in">
+    <div class="card-title">📄 View Log File</div>
+    <form method="GET" action="/logs">
+      <div class="form-group">
+        <label for="file">Log File Path</label>
+        <input type="text" id="file" name="file" placeholder="/var/log/auth.log" value="{{ log_file }}" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="lines">Lines to show</label>
+        <input type="number" id="lines" name="lines" value="{{ lines }}" min="1" max="500">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">📖 Read Log</button>
+    </form>
+
+    {% if content %}
+    <div class="terminal" style="margin-top:1.25rem; max-height:400px; overflow-y:auto;">{{ content }}</div>
+    {% endif %}
+  </div>
+
+  <div class="card animate-in">
+    <div class="card-title">💡 Information Disclosure Payloads</div>
+    <div class="hint-box" style="margin-top:0; border:none; background:transparent; padding:0;">
+      <h4>System Logs</h4>
+      <ul>
+        <li><code>/var/log/auth.log</code> — SSH &amp; sudo events</li>
+        <li><code>/var/log/syslog</code> — General system log</li>
+        <li><code>/var/log/kern.log</code> — Kernel messages</li>
+        <li><code>/var/log/ufw.log</code> — Firewall events</li>
+      </ul>
+      <h4 style="margin-top:1rem;">Sensitive Files</h4>
+      <ul>
+        <li><code>/etc/passwd</code> — User accounts</li>
+        <li><code>/etc/shadow</code> — Password hashes (needs root)</li>
+        <li><code>/etc/hosts</code> — DNS mappings</li>
+      </ul>
+      <h4 style="margin-top:1rem;">Command Injection via file param</h4>
+      <ul>
+        <li><code>/etc/passwd; id</code></li>
+        <li><code>/dev/null; cat /etc/hostname</code></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

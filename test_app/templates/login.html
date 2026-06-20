@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>🔑 Login — Brute Force Lab</h1>
+  <p>No rate limiting · No account lockout · No CAPTCHA</p>
+</div>
+
+<div class="two-col">
+  <div class="card animate-in">
+    <div class="card-title">Sign In</div>
+
+    {% if error %}
+    <div class="alert alert-error">❌ {{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="/login">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" autocomplete="off" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">🔓 Login</button>
+    </form>
+  </div>
+
+  <div class="card animate-in">
+    <div class="card-title">💡 Testing Hints</div>
+    <div class="hint-box" style="margin-top:0; border:none; background:transparent; padding:0;">
+      <h4>Hydra (HTTP Form)</h4>
+      <ul>
+        <li><code>hydra -l admin -P /usr/share/wordlists/rockyou.txt 127.0.0.1 http-post-form "/login:username=^USER^&password=^PASS^:Invalid" -t 4 -V</code></li>
+      </ul>
+      <h4 style="margin-top:1rem;">API Brute Force</h4>
+      <ul>
+        <li><code>curl -X POST http://localhost:9090/api/login -H "Content-Type: application/json" -d '{"username":"admin","password":"test"}'</code></li>
+      </ul>
+      <h4 style="margin-top:1rem;">SQL Injection on Login</h4>
+      <ul>
+        <li>Username: <code>admin' --</code></li>
+        <li>Username: <code>' OR 1=1 --</code></li>
+        <li>Password: <code>' OR '1'='1</code></li>
+      </ul>
+      <h4 style="margin-top:1rem;">Known Accounts</h4>
+      <ul>
+        <li><code>admin</code> / <code>admin123</code></li>
+        <li><code>john</code> / <code>password</code></li>
+        <li><code>jane</code> / <code>letmein</code></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

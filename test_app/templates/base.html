@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}VulnLab{% endblock %} — VulnLab</title>
+  <meta name="description" content="Deliberately vulnerable web application for security testing">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">
+      <span class="icon">🛡️</span>
+      VulnLab
+      <span class="nav-tag">INSECURE</span>
+    </a>
+
+    <div class="navbar-links">
+      <a href="/" class="{{ 'active' if request.endpoint == 'index' }}">Home</a>
+      <a href="/login" class="{{ 'active' if request.endpoint == 'login' }}">Login</a>
+      <a href="/products" class="{{ 'active' if request.endpoint == 'products' }}">Products</a>
+      <a href="/ping" class="{{ 'active' if request.endpoint == 'ping' }}">Ping</a>
+      <a href="/upload" class="{{ 'active' if request.endpoint == 'upload' }}">Upload</a>
+      <a href="/comments" class="{{ 'active' if request.endpoint == 'comments' }}">Comments</a>
+      <a href="/ddos" class="{{ 'active' if request.endpoint == 'ddos' }}" style="color:#f85149">DDoS</a>
+      {% if session.get('username') %}
+        <a href="/profile/{{ session.get('user_id') }}">{{ session.get('username') }}</a>
+        <a href="/logout">Logout</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer class="footer">
+    ⚠️ <strong>WARNING:</strong> This application is <strong>intentionally insecure</strong>.
+    Do not deploy to any public network. For local security testing only.
+  </footer>
+
+</body>
+</html>

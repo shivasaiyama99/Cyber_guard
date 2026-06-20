@@ -1,0 +1,1292 @@
+[
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-24T15:51:19.754595",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-24T16:21:19.757307",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-24T16:51:19.770971",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-24T17:21:19.752700",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-24T17:51:19.777949",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-24T18:21:19.796029",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T04:57:01.465090",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T05:27:01.473113",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T05:57:01.492971",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T14:16:50.515448",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T14:46:48.370920",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T15:16:48.416348",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T15:46:48.452641",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T16:16:48.487534",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T16:46:48.530626",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T17:16:48.575258",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T17:46:48.611196",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-25T18:16:48.650726",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-26T18:45:37.809529",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-28T13:16:56.702126",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-28T13:46:56.718911",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-31T14:57:39.303070",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-31T15:27:39.302881",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-31T15:57:37.294042",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-31T16:27:37.291856",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-31T16:57:37.338823",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-03-31T17:27:37.370544",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "localhost",
+    "timestamp": "2026-04-05T05:09:22.444684",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T05:33:13.066386",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T06:22:53.379701",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T06:52:53.384873",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T07:22:53.416748",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T07:52:53.470333",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T07:53:29.705799",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T07:55:43.541684",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": ""
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T08:08:03.394242",
+    "scan_time": "0.4s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 9090,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "zeus-admin",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 9090,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "zeus-admin",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "localhost",
+    "timestamp": "2026-04-05T08:08:30.832698",
+    "scan_time": "0.5s",
+    "open_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T09:00:49.554300",
+    "scan_time": "0.9s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T09:40:21.237254",
+    "scan_time": "0.4s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T11:57:36.229254",
+    "scan_time": "2.6s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T12:27:38.870462",
+    "scan_time": "0.4s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T12:57:39.334035",
+    "scan_time": "0.5s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T13:27:42.063250",
+    "scan_time": "0.4s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "localhost",
+    "timestamp": "2026-04-05T14:17:11.408920",
+    "scan_time": "0.4s",
+    "open_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T14:21:28.436787",
+    "scan_time": "0.4s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T14:51:28.836411",
+    "scan_time": "0.5s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T15:21:29.327670",
+    "scan_time": "0.5s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T16:40:39.847679",
+    "scan_time": "0.9s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-04-05T17:28:00.480093",
+    "scan_time": "0.4s",
+    "open_ports": [
+      {
+        "port": 8000,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "version": ""
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "unexpected_ports": [
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "version": ""
+      },
+      {
+        "port": 27017,
+        "protocol": "tcp",
+        "state": "open",
+        "service": "mongod",
+        "version": ""
+      }
+    ],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false
+  },
+  {
+    "target": "127.0.0.1",
+    "timestamp": "2026-06-20T16:59:42.812586",
+    "scan_time": "0.0s",
+    "open_ports": [],
+    "unexpected_ports": [],
+    "allowed_ports": [
+      22,
+      80,
+      443,
+      5173,
+      8000
+    ],
+    "mock_data": false,
+    "error": "nmap not found. Install from https://nmap.org/download.html"
+  }
+]

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}Vulnerability Labs{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>🔓 VulnLab — Vulnerability Testing Labs</h1>
+  <p>A deliberately insecure web application. Pick a lab below and start testing with your favorite security tools.</p>
+</div>
+
+<div class="vuln-grid">
+
+  <a href="/login" class="card vuln-card animate-in">
+    <div class="vuln-icon bruteforce">🔑</div>
+    <div class="card-title">Brute Force Login</div>
+    <div class="card-desc">
+      No rate limiting, no account lockout, no CAPTCHA.
+      Test with <code>hydra</code>, <code>medusa</code>, or custom scripts.
+    </div>
+    <span class="vuln-tag tag-critical">Critical</span>
+  </a>
+
+  <a href="/products" class="card vuln-card animate-in">
+    <div class="vuln-icon sqli">💉</div>
+    <div class="card-title">SQL Injection</div>
+    <div class="card-desc">
+      Product search uses raw string concatenation in SQL queries.
+      Test with <code>sqlmap</code> or manual payloads.
+    </div>
+    <span class="vuln-tag tag-critical">Critical</span>
+  </a>
+
+  <a href="/ping" class="card vuln-card animate-in">
+    <div class="vuln-icon cmdi">⌨️</div>
+    <div class="card-title">Command Injection</div>
+    <div class="card-desc">
+      Ping tool passes user input directly to the shell.
+      Try <code>; id</code>, <code>| cat /etc/passwd</code>, etc.
+    </div>
+    <span class="vuln-tag tag-critical">Critical</span>
+  </a>
+
+  <a href="/comments" class="card vuln-card animate-in">
+    <div class="vuln-icon xss">📝</div>
+    <div class="card-title">Cross-Site Scripting (XSS)</div>
+    <div class="card-desc">
+      Comments are stored and rendered without sanitization.
+      Inject <code>&lt;script&gt;</code> tags or event handlers.
+    </div>
+    <span class="vuln-tag tag-high">High</span>
+  </a>
+
+  <a href="/profile/1" class="card vuln-card animate-in">
+    <div class="vuln-icon idor">👤</div>
+    <div class="card-title">IDOR — Insecure Direct Object Reference</div>
+    <div class="card-desc">
+      Access any user profile by changing the ID in the URL.
+      Exposes sensitive data (credit cards, SSN).
+    </div>
+    <span class="vuln-tag tag-high">High</span>
+  </a>
+
+  <a href="/upload" class="card vuln-card animate-in">
+    <div class="vuln-icon upload">📁</div>
+    <div class="card-title">Unrestricted File Upload</div>
+    <div class="card-desc">
+      No file type validation, no size limits, original filenames preserved.
+      Upload PHP shells, HTML files, anything.
+    </div>
+    <span class="vuln-tag tag-high">High</span>
+  </a>
+
+  <a href="/robots.txt" class="card vuln-card animate-in">
+    <div class="vuln-icon recon">🔍</div>
+    <div class="card-title">Reconnaissance & Port Scanning</div>
+    <div class="card-desc">
+      Open port 9090 ready for <code>nmap</code> scanning.
+      <code>robots.txt</code> leaks hidden directories. Check <code>/config</code>.
+    </div>
+    <span class="vuln-tag tag-medium">Medium</span>
+  </a>
+
+  <a href="/admin" class="card vuln-card animate-in">
+    <div class="vuln-icon hidden">📂</div>
+    <div class="card-title">Hidden Directories</div>
+    <div class="card-desc">
+      Hidden <code>/admin</code>, <code>/backup</code>, <code>/secret</code>, <code>/.env</code> paths.
+      Discover with <code>gobuster</code> or <code>dirb</code>.
+    </div>
+    <span class="vuln-tag tag-medium">Medium</span>
+  </a>
+
+  <a href="/ddos" class="card vuln-card animate-in">
+    <div class="vuln-icon bruteforce" style="background:linear-gradient(135deg,#f85149,#da3633)">💥</div>
+    <div class="card-title">DDoS Attack Simulator</div>
+    <div class="card-desc">
+      Launch HTTP flood, SYN flood, slowloris, or mixed attacks against any target:port.
+      Tests Cyberguard detection, fail2ban, and email alerting.
+    </div>
+    <span class="vuln-tag tag-critical">Critical</span>
+  </a>
+
+  <a href="/logs" class="card vuln-card animate-in">
+    <div class="vuln-icon recon">📋</div>
+    <div class="card-title">System Log Viewer</div>
+    <div class="card-desc">
+      Reads real system logs (<code>/var/log/auth.log</code>, <code>/var/log/syslog</code>).
+      Information disclosure + command injection via file parameter.
+    </div>
+    <span class="vuln-tag tag-critical">Critical</span>
+  </a>
+
+  <a href="/api/system-info" class="card vuln-card animate-in">
+    <div class="vuln-icon recon">🖥️</div>
+    <div class="card-title">System Info Disclosure</div>
+    <div class="card-desc">
+      Exposes hostname, kernel, open ports, processes, network config.
+      Real system data via <code>/api/system-info</code>.
+    </div>
+    <span class="vuln-tag tag-high">High</span>
+  </a>
+
+</div>
+
+<div class="hint-box" style="margin-top:2rem;">
+  <h4>🛠️ Quick-Start Commands</h4>
+  <ul>
+    <li><code>hydra -l admin -P wordlist.txt 127.0.0.1 http-post-form "/login:username=^USER^&password=^PASS^:Invalid"</code></li>
+    <li><code>sqlmap -u "http://localhost:9090/products?id=1" --batch --dump</code></li>
+    <li><code>nmap -sV -sC -p 9090 127.0.0.1</code></li>
+    <li><code>gobuster dir -u http://localhost:9090 -w /usr/share/wordlists/dirb/common.txt</code></li>
+    <li><code>curl -X POST http://localhost:9090/ping -d "host=127.0.0.1;id"</code></li>
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>📂 Admin Panel — Hidden Directory Lab</h1>
+  <p>This page is not linked anywhere — discoverable only via directory brute-force</p>
+</div>
+
+<div class="alert alert-warning animate-in">
+  ⚠️ This admin panel has <strong>no authentication</strong>. Anyone who finds the URL has full access.
+</div>
+
+<div class="two-col">
+  <div class="card animate-in">
+    <div class="card-title">👥 All Users</div>
+    <div class="table-wrap" style="margin-top:1rem;">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          {% for u in users %}
+          <tr>
+            <td>{{ u['id'] }}</td>
+            <td><a href="/profile/{{ u['id'] }}">{{ u['username'] }}</a></td>
+            <td>{{ u['email'] }}</td>
+            <td><span class="badge badge-{{ u['role'] }}">{{ u['role'] }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card animate-in">
+    <div class="card-title">📦 All Products</div>
+    <div class="table-wrap" style="margin-top:1rem;">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>Price</th><th>Stock</th></tr>
+        </thead>
+        <tbody>
+          {% for p in products %}
+          <tr>
+            <td>{{ p['id'] }}</td>
+            <td>{{ p['name'] }}</td>
+            <td>${{ "%.2f"|format(p['price']) }}</td>
+            <td>{{ p['stock'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="hint-box animate-in">
+  <h4>💡 Directory Brute-Force Testing</h4>
+  <ul>
+    <li><code>gobuster dir -u http://localhost:9090 -w /usr/share/wordlists/dirb/common.txt</code></li>
+    <li><code>dirb http://localhost:9090</code></li>
+    <li>Hidden paths: <code>/admin</code>, <code>/backup</code>, <code>/secret</code>, <code>/config</code>, <code>/.env</code>, <code>/robots.txt</code></li>
+    <li>Check <code>/robots.txt</code> — it leaks all hidden directories</li>
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{
+    "192.168.1.55": {
+        "reputation": "Malicious",
+        "location": "Moscow, Russia",
+        "type": "Botnet Node / Brute Force",
+        "confidence": 99
+    },
+    "45.33.22.11": {
+        "reputation": "Malicious",
+        "location": "Beijing, China",
+        "type": "SQL Injection Specialist",
+        "confidence": 95
+    },
+    "203.0.113.8": {
+        "reputation": "Suspicious",
+        "location": "Unknown",
+        "type": "Port Scanner / Recon",
+        "confidence": 75
+    }
+}

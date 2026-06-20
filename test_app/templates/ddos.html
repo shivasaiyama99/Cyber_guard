@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}DDoS Simulator{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>💥 DDoS Attack Simulator</h1>
+  <p>Launch DDoS attacks against a target to test Cyberguard detection, fail2ban, and alerting</p>
+</div>
+
+<div class="two-col">
+  <div class="card animate-in">
+    <div class="card-title">🎯 Launch Attack</div>
+
+    {% if status == "running" %}
+    <div style="background:#1a0a0a; border:1px solid #f85149; border-radius:6px; padding:12px 16px; margin-bottom:1rem; color:#f85149;">
+      <strong>ATTACK RUNNING</strong> — {{ current_attack }} flood on {{ current_target }}:{{ current_port }}
+    </div>
+    <form method="POST" action="/ddos">
+      <input type="hidden" name="action" value="stop">
+      <button type="submit" class="btn" style="width:100%; background:#f85149; color:#fff;">Stop Attack</button>
+    </form>
+    {% else %}
+    <form method="POST" action="/ddos">
+      <input type="hidden" name="action" value="start">
+      <div class="form-group">
+        <label for="target">Target IP / Hostname</label>
+        <input type="text" id="target" name="target" placeholder="e.g. 192.168.1.100" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="port">Target Port</label>
+        <input type="number" id="port" name="port" placeholder="e.g. 9090, 8000, 80" required min="1" max="65535">
+      </div>
+      <div class="form-group">
+        <label for="attack">Attack Type</label>
+        <select id="attack" name="attack" style="width:100%; padding:8px; background:#161b22; color:#c9d1d9; border:1px solid #30363d; border-radius:6px;">
+          <option value="http">HTTP Flood (GET/POST + SQLi + brute force)</option>
+          <option value="syn">SYN Flood (rapid TCP connections)</option>
+          <option value="slowloris">Slowloris (hold connections open)</option>
+          <option value="mixed">Mixed (all attack types combined)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (seconds, max 300)</label>
+        <input type="number" id="duration" name="duration" value="30" min="5" max="300">
+      </div>
+      <div class="form-group">
+        <label for="threads">Threads (max 100)</label>
+        <input type="number" id="threads" name="threads" value="20" min="1" max="100">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">💥 Launch Attack</button>
+    </form>
+    {% endif %}
+
+    {% if output %}
+    <div class="terminal" style="margin-top:1.25rem; color:#3fb950;">{{ output }}</div>
+    {% endif %}
+    {% if error %}
+    <div class="terminal" style="margin-top:1.25rem; color:#f85149;">{{ error }}</div>
+    {% endif %}
+  </div>
+
+  <div class="card animate-in">
+    <div class="card-title">💡 How It Works</div>
+    <div class="hint-box" style="margin-top:0; border:none; background:transparent; padding:0;">
+      <h4>Attack Types</h4>
+      <ul>
+        <li><strong>HTTP Flood</strong> — Sends rapid GET/POST requests including SQLi payloads, brute force login attempts, and path scanning</li>
+        <li><strong>SYN Flood</strong> — Rapid TCP connect/disconnect to exhaust connection limits</li>
+        <li><strong>Slowloris</strong> — Opens many connections and sends partial HTTP headers to hold them open</li>
+        <li><strong>Mixed</strong> — Combines all attack types simultaneously</li>
+      </ul>
+
+      <h4 style="margin-top:1rem;">What Gets Detected</h4>
+      <ul>
+        <li>Cyberguard monitors <code>same_ip_requests_per_minute</code> (100 req/min threshold)</li>
+        <li>UFW firewall blocks trigger <code>ddos_blocks_per_ip_per_minute</code> (30/min)</li>
+        <li>Fail2ban bans trigger <code>fail2ban_bans_per_ip</code> alerts</li>
+        <li>SQLi payloads trigger <code>sqli_attempts_per_ip</code> (CRITICAL)</li>
+        <li>Failed logins trigger <code>failed_login_per_ip_per_minute</code> (HIGH)</li>
+        <li>HIGH/CRITICAL alerts send email via SMTP</li>
+      </ul>
+
+      <h4 style="margin-top:1rem;">From Another Computer</h4>
+      <ul>
+        <li>Open this page on the attacker machine: <code>http://TARGET_IP:9090/ddos</code></li>
+        <li>Or use the CLI script directly:<br>
+          <code>python3 ddos_simulate.py -t TARGET_IP -p 9090</code></li>
+        <li>Or use the API:<br>
+          <code>curl -X POST http://TARGET_IP:9090/api/ddos -H "Content-Type: application/json" -d '{"target":"VICTIM_IP","port":9090,"attack":"http"}'</code></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

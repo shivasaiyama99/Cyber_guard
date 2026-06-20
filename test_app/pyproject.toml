@@ -1,0 +1,11 @@
+[project]
+name = "vulnlab"
+version = "1.0.0"
+description = "Deliberately vulnerable web application for security testing"
+requires-python = ">=3.10"
+dependencies = [
+    "flask>=3.0",
+]
+
+[project.scripts]
+vulnlab = "app:main"
