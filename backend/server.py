@@ -156,17 +156,26 @@ async def lifespan(app: FastAPI):
     await redis_publisher.connect()
     # Wire threshold engine into log watcher pipeline
     set_on_new_row(_threshold_callback)
-    # Start the live log ingestor as a background task
-    watcher_task = asyncio.create_task(start_watcher())
-    scan_task = asyncio.create_task(_periodic_port_scan())
+    
+    watcher_task = None
+    scan_task = None
+    if os.environ.get("IS_VERCEL") != "true":
+        # Start the live log ingestor as a background task
+        watcher_task = asyncio.create_task(start_watcher())
+        scan_task = asyncio.create_task(_periodic_port_scan())
+        
     yield
-    scan_task.cancel()
-    watcher_task.cancel()
+    
+    if scan_task:
+        scan_task.cancel()
+    if watcher_task:
+        watcher_task.cancel()
     for t in (watcher_task, scan_task):
-        try:
-            await t
-        except asyncio.CancelledError:
-            pass
+        if t:
+            try:
+                await t
+            except asyncio.CancelledError:
+                pass
     await redis_publisher.close()
     await close_mongodb_connection()
 
