@@ -25,8 +25,10 @@ from auth import (
     _active_sessions,
 )
 
-# Ensure the src directory is on the path to import the package
+# Ensure the backend and src directories are on the path to import files correctly
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+if CURRENT_DIR not in sys.path:
+    sys.path.insert(0, CURRENT_DIR)
 SRC_DIR = os.path.join(CURRENT_DIR, "src")
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
