@@ -99,7 +99,7 @@ export default function SignUp() {
         className="absolute inset-0 w-full h-full object-cover opacity-90 contrast-125 brightness-110"
         aria-hidden="true"
       >
-        <source src="/bg_video.mp4" type="video/mp4" />
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-world-map-loop-42352-large.mp4" type="video/mp4" />
       </video>
 
       {/* Background effects */}

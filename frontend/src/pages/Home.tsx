@@ -330,7 +330,7 @@ export default function Home() {
                     aria-hidden="true"
                 >
                     <source
-                        src="/bg_video.mp4"
+                        src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-world-map-loop-42352-large.mp4"
                         type="video/mp4"
                     />
                 </video>
