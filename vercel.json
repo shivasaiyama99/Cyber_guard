@@ -8,5 +8,10 @@
       "entrypoint": "backend/server.py",
       "routePrefix": "/api"
     }
+  },
+  "functions": {
+    "backend/server.py": {
+      "excludeFiles": "{frontend/**,test_app/**,.planning/**,api/**,**/__pycache__/**,**/*.pyc,**/*.pyo,**/*.pyd}"
+    }
   }
 }
