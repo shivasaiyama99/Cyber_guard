@@ -17,7 +17,10 @@ from typing import Dict, Optional
 
 logger = logging.getLogger(__name__)
 
-DATA_DIR = Path(__file__).parent / "data"
+if os.environ.get("IS_VERCEL") == "true":
+    DATA_DIR = Path("/tmp/data")
+else:
+    DATA_DIR = Path(__file__).parent / "data"
 EMAIL_AUDIT_FILE = DATA_DIR / "email_audit.json"
 
 _executor = ThreadPoolExecutor(max_workers=2)

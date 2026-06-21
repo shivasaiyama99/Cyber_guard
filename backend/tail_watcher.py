@@ -23,8 +23,11 @@ from typing import AsyncGenerator, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
-BACKEND_DIR = Path(__file__).parent
-DATA_DIR = BACKEND_DIR / "data"
+if os.environ.get("IS_VERCEL") == "true":
+    DATA_DIR = Path("/tmp/data")
+else:
+    BACKEND_DIR = Path(__file__).parent
+    DATA_DIR = BACKEND_DIR / "data"
 CSV_PATH = DATA_DIR / "simulation_logs.csv"
 CSV_FIELDS = ["timestamp", "ip_address", "user", "status", "endpoint"]
 
