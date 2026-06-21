@@ -7,7 +7,7 @@ except ImportError:
         def decorator(func):
             return func
         return decorator
-import pandas as pd
+import csv
 import json
 import os
 
@@ -21,17 +21,19 @@ class SecurityTools:
         Returns a list of suspicious IPs.
         """
         try:
-            # Read the CSV
-            df = pd.read_csv('data/simulation_logs.csv')
-            
-            # Filter for Failed Logins
-            failed_df = df[df['status'] == 'Failed_Login']
-            
-            # Count failures per IP
-            ip_counts = failed_df['ip_address'].value_counts()
+            suspicious_ips = []
+            ip_counts = {}
+            # Read the CSV using built-in csv module
+            with open('data/simulation_logs.csv', 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    if row.get('status') == 'Failed_Login':
+                        ip = row.get('ip_address')
+                        if ip:
+                            ip_counts[ip] = ip_counts.get(ip, 0) + 1
             
             # Get IPs with > 5 failures
-            suspicious_ips = ip_counts[ip_counts > 5].index.tolist()
+            suspicious_ips = [ip for ip, count in ip_counts.items() if count > 5]
             
             return f"Suspicious IPs found with >5 failures: {suspicious_ips}"
         except Exception as e:

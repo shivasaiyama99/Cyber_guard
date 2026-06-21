@@ -1,69 +1,75 @@
 """
-ML Anomaly Detection Layer — IsolationForest-based anomaly scoring for security logs.
+Pure Python Anomaly Detection Layer — Dependency-free statistical scoring for security logs.
 """
 
+import csv
 import logging
+from datetime import datetime
 from typing import Dict, List
-
-import numpy as np
-import pandas as pd
-from sklearn.ensemble import IsolationForest
 
 logger = logging.getLogger(__name__)
 
 
 class AnomalyDetector:
-    """Detect anomalous IPs using IsolationForest on per-IP behavioural features."""
+    """Detect anomalous IPs using statistical rule-based scoring on behavioural features."""
 
     def __init__(self, contamination: float = 0.05, random_state: int = 42):
         self._contamination = contamination
         self._random_state = random_state
-        self._model = IsolationForest(
-            contamination=contamination,
-            random_state=random_state,
-        )
         self._last_summary: Dict = {"anomalous_count": 0, "anomalous_ips": []}
 
-    def score_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
+    def score_file(self, csv_path: str) -> Dict:
         """
-        Compute per-IP features over a rolling 5-minute window, fit IsolationForest,
-        and return the dataframe augmented with anomaly_score and anomaly_label columns.
+        Reads log CSV directly, computes per-IP behavioural features,
+        and flags anomalous IPs based on risk scoring thresholds.
         """
-        if df.empty:
-            df["anomaly_score"] = pd.Series(dtype=int)
-            df["anomaly_label"] = pd.Series(dtype=str)
-            return df
-
-        df = df.copy()
-
-        # Ensure timestamp is datetime
-        if "timestamp" in df.columns:
-            df["_ts"] = pd.to_datetime(df["timestamp"], errors="coerce")
-        else:
-            df["_ts"] = pd.Timestamp.now()
+        try:
+            ip_data: Dict[str, List[Dict]] = {}
+            with open(csv_path, mode="r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    ip = row.get("ip_address")
+                    if ip:
+                        if ip not in ip_data:
+                            ip_data[ip] = []
+                        ip_data[ip].append(row)
+        except Exception as e:
+            logger.error(f"Error reading CSV file in AnomalyDetector: {e}")
+            return self._last_summary
 
         # Define failure and error statuses
         fail_statuses = {"Failed_Login", "failed_login"}
         error_statuses = {"404_Not_Found", "500_Server_Error", "403_Forbidden"}
 
-        # Compute per-IP features using a 5-minute rolling window
-        # Group by IP first, then compute window-based features
         ip_features: Dict[str, Dict] = {}
+        for ip, rows in ip_data.items():
+            # Parse timestamps to calculate time span
+            timestamps = []
+            for r in rows:
+                ts_str = r.get("timestamp")
+                if ts_str:
+                    try:
+                        # try parsing standard ISO formats
+                        ts = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+                        timestamps.append(ts)
+                    except ValueError:
+                        pass
+            
+            if timestamps:
+                ts_min = min(timestamps)
+                ts_max = max(timestamps)
+                time_span_seconds = (ts_max - ts_min).total_seconds()
+            else:
+                time_span_seconds = 0.0
 
-        for ip, group in df.groupby("ip_address"):
-            group = group.sort_values("_ts")
-            ts_min = group["_ts"].min()
-            ts_max = group["_ts"].max()
+            # Calculate 5-minute windows
+            n_windows = max(1.0, time_span_seconds / 300.0)
 
-            # Use 5-minute windows; if total span < 5 min, treat as one window
-            window = pd.Timedelta(minutes=5)
-            total_span = ts_max - ts_min
-            n_windows = max(1, int(np.ceil(total_span / window))) if pd.notna(total_span) else 1
+            failed_count = sum(1 for r in rows if r.get("status") in fail_statuses)
+            unique_endpoints = len(set(r.get("endpoint") for r in rows if r.get("endpoint")))
+            error_count = sum(1 for r in rows if r.get("status") in (error_statuses | fail_statuses))
+            total = len(rows)
 
-            failed_count = group["status"].isin(fail_statuses).sum()
-            unique_endpoints = group["endpoint"].nunique()
-            error_count = group["status"].isin(error_statuses | fail_statuses).sum()
-            total = len(group)
             error_rate = error_count / total if total > 0 else 0.0
             request_velocity = total / n_windows
 
@@ -72,44 +78,37 @@ class AnomalyDetector:
                 "unique_endpoints": unique_endpoints,
                 "error_rate": error_rate,
                 "request_velocity": request_velocity,
+                "total": total
             }
 
-        features_df = pd.DataFrame.from_dict(ip_features, orient="index")
+        anomalous_ips = []
+        for ip, feat in ip_features.items():
+            score = 0
+            # Condition 1: High failed login attempts (Brute force pattern)
+            if feat["failed_count"] > 5:
+                score += 2
+            
+            # Condition 2: Volumetric traffic (DDoS / flooding pattern)
+            if feat["request_velocity"] > 15:
+                score += 2
 
-        if len(features_df) < 2:
-            # Not enough data for IsolationForest — mark everything normal
-            df["anomaly_score"] = 1
-            df["anomaly_label"] = "NORMAL"
-            df.drop(columns=["_ts"], inplace=True)
-            self._last_summary = {"anomalous_count": 0, "anomalous_ips": []}
-            return df
+            # Condition 3: High error rates (Probing / fuzzing / vulnerability scanning)
+            if feat["error_rate"] > 0.4 and feat["total"] > 3:
+                score += 2
 
-        # Fit and predict
-        feature_cols = ["failed_count", "unique_endpoints", "error_rate", "request_velocity"]
-        X = features_df[feature_cols].values
-        predictions = self._model.fit_predict(X)
+            # Condition 4: Directory traversal / path scanning
+            if feat["unique_endpoints"] > 8 and feat["error_rate"] > 0.2:
+                score += 1
 
-        features_df["anomaly_score"] = predictions
-        features_df["anomaly_label"] = [
-            "ANOMALOUS" if p == -1 else "NORMAL" for p in predictions
-        ]
+            # Flag as anomalous if score threshold is reached
+            if score >= 2:
+                anomalous_ips.append(ip)
 
-        # Map back to original df rows
-        score_map = features_df["anomaly_score"].to_dict()
-        label_map = features_df["anomaly_label"].to_dict()
-
-        df["anomaly_score"] = df["ip_address"].map(score_map).fillna(1).astype(int)
-        df["anomaly_label"] = df["ip_address"].map(label_map).fillna("NORMAL")
-
-        # Update summary
-        anomalous_ips = features_df[features_df["anomaly_label"] == "ANOMALOUS"].index.tolist()
         self._last_summary = {
             "anomalous_count": len(anomalous_ips),
             "anomalous_ips": anomalous_ips,
         }
-
-        df.drop(columns=["_ts"], inplace=True)
-        return df
+        return self._last_summary
 
     def get_summary(self) -> Dict:
         """Return count and list of anomalous IPs from the last scoring run."""

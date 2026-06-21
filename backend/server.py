@@ -62,7 +62,6 @@ from redis_pipeline import publisher as redis_publisher  # noqa: E402
 from threshold_engine import ThresholdEngine, ThresholdConfig, Alert  # noqa: E402
 from alert_mailer import alert_mailer  # noqa: E402
 from port_scanner import port_scanner  # noqa: E402
-import pandas as pd  # noqa: E402
 
 # Shared anomaly detector instance
 anomaly_detector = AnomalyDetector()
@@ -250,9 +249,7 @@ async def _run_simulation_task():
             print(f"=== CSV found! Running anomaly detection ===")
             try:
                 import anyio
-                df = pd.read_csv(csv_path)
-                df = await anyio.to_thread.run_sync(anomaly_detector.score_dataframe, df)
-                summary = anomaly_detector.get_summary()
+                summary = await anyio.to_thread.run_sync(anomaly_detector.score_file, csv_path)
                 if summary["anomalous_ips"]:
                     anomaly_context = (
                         "Pre-analysis anomaly detection flagged the following IPs as anomalous: "
